@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üdvözöljük!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+            margin: 0 5px;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+        .container {
+            margin: 20px auto;
+            width: 50%;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        form input[type="text"],
+        form input[type="password"],
+        form input[type="submit"] {
+            margin-top: 10px;
+            padding: 5px;
+            width: 200px;
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Üdvözöllek!</h1>
+        <p>Ezen az oldalon információt találhatsz különböző madárpók fajokról.</p>
+        <p>Ha szeretnél saját fotókat és leírást feltölteni akkor regisztrálj!</p>
+    </header>
+    <nav>
+        <a href="/tarantulas">Menüpont 1</a>
+    </nav>
+    <div class="container">
+        <h2>Regisztráció</h2>
+       <a href="/register"><button>Regisztráció</button></a>
+    </div>
+    <div class="container">
+        <h2>Bejelentkezés</h2>
+        <form action="/login" method="post">
+            <input type="text" name="username" placeholder="Felhasználónév" required>
+            <input type="password" name="password" placeholder="Jelszó" required>
+            <input type="submit" value="Bejelentkezés">
+        </form>
+    </div>
+</body>
+</html>

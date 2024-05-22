@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a tarantula description</title>
+</head>
+<body>
+    <h1>Tarantula description</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data" id="tarantulaForm">
+        <label for="genus">Genus:</label><br>
+        <input type="text" id="genus" name="genus" required><br><br>
+        
+        <label for="spiece">Spieces:</label><br>
+        <input type="text" id="spieces" name="spieces" required><br><br>
+        
+        <label for="color">Color:</label><br>
+        <input type="text" id="color" name="color" required><br><br>
+        
+        <label for="bodySize">Body size (cm):</label><br>
+        <input type="number" id="bodySize" name="bodySize" required><br><br>
+        
+        <label for="legspan">Legspan (cm):</label><br>
+        <input type="number" id="legspan" name="legspan" required><br><br>
+        
+        <label for="type">:</label><br>
+        <input type="text" id="aggressiveness" name="aggressiveness"><br><br>
+        
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+        
+        <label for="keepInfo">Keeping information:</label><br>
+        <input type="text" id="keepInfo" name="keepInfo"><br><br>
+        
+        <label for="breedInfo">Breeding information:</label><br>
+        <input type="text" id="breedInfo" name="breedInfo"><br><br>
+        
+        <label for="images">Pictures:</label><br>
+        <input type="file" id="images" name="images" multiple><br><br>
+        
+        <input type="submit" value="Upload">
+    </form>
+    
+    <script>
+        document.getElementById("tarantulaForm").addEventListener("submit", function(event) {
+            event.preventDefault()
+
+            var formData = new FormData(this);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text) });
+                }
+                return response.text();
+            })
+            .then(data => {              
+                alert("Sikeres feltöltés!");
+                document.getElementById("tarantulaForm").reset();
+            })
+            .catch(error => {      
+                alert("Hiba történt: " + error.message);
+                document.getElementById("tarantulaForm").reset();
+            });
+        });
+    </script>
+</body>
+</html>

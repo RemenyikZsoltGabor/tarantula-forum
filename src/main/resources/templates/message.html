@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üzenet küldése</title>
+    <style>
+        /* Stílusok */
+        form {
+            width: 50%;
+            margin: auto;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Üzenet küldése</h2>
+    <form action="/sendMessage" method="post">
+        <label for="sender">Feladó:</label><br>
+        <input type="text" id="sender" name="sender" placeholder="Feladó neve" required><br>
+        <label for="recipient">Címzett:</label><br>
+        <input type="text" id="recipient" name="recipient" placeholder="Címzett neve" required><br>
+        <label for="message">Üzenet:</label><br>
+        <textarea id="message" name="message" placeholder="Írja ide az üzenetet" required></textarea><br>
+        <input type="submit" value="Küldés">
+    </form>
+</body>
+</html>

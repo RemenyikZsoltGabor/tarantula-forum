@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.title {
+    margin: 0;
+}
+
+.content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.spider-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.gallery {
+    max-width: 800px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.gallery img {
+    max-width: 100%;
+}

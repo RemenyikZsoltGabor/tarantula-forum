@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pamphobeteus sp. goliath</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/stylesheet.css}">
+</head>
+<body>
+    <header>
+        <h1 class="title">Pamphobeteus sp. goliath</h1>
+    </header>
+    <main>
+        <div class="content">
+            <img th:src="@{'${image}'}" th:alt="${tarantula.genus} + ' ' + ${tarantula.spieces}" class="spider-image" style="width: 10cm; height: 10cm;">
+            <ul>
+                <li><strong>Locality:</strong> <span th:text="${tarantula.location}"></span></li>
+                <li><strong>Color:</strong> <span th:text="${tarantula.color}"></span></li>
+                <li><strong>Leg Span:</strong> <span th:text="${tarantula.legspan}"></span></li>
+                <li><strong>Body Length:</strong><span th:text="${tarantula.bodyLength}"></span></span></li>
+                <li><strong>Aggressiveness:</strong><span th:text="${tarantula.aggressiveness}"></span></li>
+            </ul>
+            <p><strong>Description:</strong><span th:text="${tarantula.description}" ></span></p>
+            <p><strong>Keeping info:</strong><span th:text="${tarantula.keepInfo}"></span> </p>
+            <p><strong>Breeding info:</strong><span th:text="${tarantula.breedInfo}"></span> </p>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarantulák listája</title>
+</head>
+<body>
+    <h1>Tarantulák listája</h1>
+    <ul>
+        <li th:each="tarantula : ${tarantulas}">
+            <a th:href="@{'/tarantula?id=' + ${tarantula.id}}">
+                <p th:text="${tarantula.genus + ' ' + tarantula.spieces}"></p>
+            </a>
+        </li>
+    </ul>
+</body>
+</html>
