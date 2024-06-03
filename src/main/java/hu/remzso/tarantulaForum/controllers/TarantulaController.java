@@ -37,7 +37,6 @@ public class TarantulaController {
 	private static final String JPGExtension = ".jpg";
 	private User userForRegistration;
 
-	private List<Tarantula> tarantulas;
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 	@Autowired
@@ -46,10 +45,16 @@ public class TarantulaController {
 	private FileEntityRepository fileEntityRepository;
 
 	
-	@PostMapping("/login")
+	@RequestMapping("/login")
 	public String login() {
 		
 		return "actualUser";
+	}
+	
+	@GetMapping("/actualUser")
+	public String renderActualUser() {
+	    // Itt visszaadhatod a megfelelő nézetet vagy végrehajthatod a szükséges logikát
+	    return "actualUser";
 	}
 	@GetMapping("/tarantula")
 	public String renderTarantula(@RequestParam("id") Long id, Model model) {
@@ -66,31 +71,34 @@ public class TarantulaController {
 	
 	@RequestMapping("/index")
 	public String renderIndex() {
-		if(tarantulas == null) {
-			tarantulas = tarantulaRepository.findAll();
-		}
+		
 		return "index";
 	}
 	
 	@RequestMapping("/register")
 	public String renderRegister() {
+		System.out.println("r");
 		return "register";
 	}
 	
 	@RequestMapping("/registerUser")
 	public String registerUser(@ModelAttribute User user) {
 		userForRegistration = user;
+		System.out.println("ru");
 		return "registerAddress";
 	}
 	@RequestMapping("/registerAddress")
 	public String registerAdress(@ModelAttribute Address address) {
+		System.out.println("ADD");
 		if(userForRegistration != null) {
 			address.setUser(userForRegistration);
 			userForRegistration.setAddresses(List.of(address));
 			userServiceImpl.saveUser(userForRegistration);
 			userForRegistration = null;
+			System.out.println("thx");
 			return "thanks";	
 		}
+		System.out.println("err");
 		return "registrationError";
 	} 
 	
@@ -100,9 +108,10 @@ public class TarantulaController {
 		model.addAttribute("tarantulas", tarantulas);
 		return "tarantulas";
 	}
+	
 	@RequestMapping("/uploadTarantula")
 	public String renderTarantulaUlpoad(Model model) {
-		System.out.println("tarantulaUpload");
+		
 		return "tarantulaUpload";
 	}
 
