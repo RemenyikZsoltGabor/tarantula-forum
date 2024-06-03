@@ -32,6 +32,9 @@ import hu.remzso.tarantulaForum.services.UserServiceImpl;
 
 @Controller
 public class TarantulaController {
+	private static final String imagesPath="\\src\\main\\resources\\static\\img\\uploadedImages\\";
+	private static final String projectLocation = "\\eclipse-workspace\\tarantulaForum";
+	private static final String JPGExtension = ".jpg";
 	private User userForRegistration;
 
 	private List<Tarantula> tarantulas;
@@ -51,11 +54,13 @@ public class TarantulaController {
 	@GetMapping("/tarantula")
 	public String renderTarantula(@RequestParam("id") Long id, Model model) {
 		Tarantula tarantula = tarantulaRepository.findById(id).get();
-		String path = fileEntityRepository.findFirstByOrderByIdAsc().getPath();
+		String path = fileEntityRepository.findFirstByTarantulaIDOrderByIdAsc(id).get().getPath();
+		path = path.replace("\\", "/");
+	
 		System.out.println(path);
 		
 		model.addAttribute("tarantula", tarantula);
-		model.addAttribute("image", path);
+		model.addAttribute("imagePath", path.substring(19));
 		return "tarantula";
 	}
 	
@@ -64,25 +69,21 @@ public class TarantulaController {
 		if(tarantulas == null) {
 			tarantulas = tarantulaRepository.findAll();
 		}
-		System.out.println("INDEX");
 		return "index";
 	}
 	
 	@RequestMapping("/register")
 	public String renderRegister() {
-		System.out.println("REGISTER");
 		return "register";
 	}
 	
 	@RequestMapping("/registerUser")
 	public String registerUser(@ModelAttribute User user) {
-		System.out.println("REGISTERUSER");
 		userForRegistration = user;
 		return "registerAddress";
 	}
 	@RequestMapping("/registerAddress")
 	public String registerAdress(@ModelAttribute Address address) {
-		System.out.println("ADDRESSREGISTER");
 		if(userForRegistration != null) {
 			address.setUser(userForRegistration);
 			userForRegistration.setAddresses(List.of(address));
@@ -91,16 +92,11 @@ public class TarantulaController {
 			return "thanks";	
 		}
 		return "registrationError";
-	}
-	@GetMapping("/tarantulas")
-	public String renderTarantulas() {
-		System.out.println("TARANTULAs");
-		return "tarantulas";
-	}
-	@RequestMapping("/listTarantulas")
+	} 
+	
+	@RequestMapping("/tarantulas")
 	public String listTarantulas(Model model) {
 		List<Tarantula> tarantulas = tarantulaRepository.findAll();
-		System.out.println(tarantulas);
 		model.addAttribute("tarantulas", tarantulas);
 		return "tarantulas";
 	}
@@ -115,13 +111,16 @@ public class TarantulaController {
 									@ModelAttribute Tarantula tarantula) throws IOException {
 		
 		if(tarantulaRepository.findByGenusAndSpieces(tarantula.getGenus(), tarantula.getSpieces()).isPresent()) {
-			 return ResponseEntity.badRequest().body("Ez a pók már létezik!");
+			 return ResponseEntity.badRequest().body("This spider already exist!");
 		}
-	    File file = convertMultipartFileToFile(images.get(0));
+		// itt egy ciklus kell, hogy feldolgozzuk a bejövő képeket !!!!
+		String tarantulaName = tarantula.getGenus()+"_"+tarantula.getSpieces();
+	    File file = convertMultipartFileToFile(images.get(0),tarantulaName);
 	    FileEntity fileEntity = new FileEntity();
 	    
 	    fileEntity.setTarantulaID(tarantulaRepository.save(tarantula).getId());
-	    fileEntity.setPath(file.getAbsolutePath());
+	    fileEntity.setPath(imagesPath+file.getName());
+	    
 	    fileEntityRepository.save(fileEntity);
 	    
 	    String srcPath = "src";
@@ -153,11 +152,15 @@ public class TarantulaController {
 		return null;
 	} 
 	
-	private File convertMultipartFileToFile(MultipartFile multipartFile) {
+	private File convertMultipartFileToFile(MultipartFile multipartFile, String tarantulaName) {
 	    File file = null;
 	    try {
+	    	String userHome = System.getProperty("user.home");
 	        // ITT KELL MAJD EGY LOGIKA AMI ELNEVEZI A KÉPEKET ILLETVE ELŐÁLLTJA A MEGFELELŐ ELÉRÉSI UTAT
-	        file = new File("C:\\Users\\rzesm\\eclipse-workspace\\tarantulaForum\\src\\main\\resources\\static\\img\\uploadedImages\\image.jpg");
+	    	//plusz külön mappákba kell tenni a különböző fajokat azon belül külön mappa a nemeknek :  static/img/uploadedImages/GENICULATA/MALE/spider.jpg
+	    	String imageLocation = userHome+projectLocation+imagesPath+tarantulaName+"0"+JPGExtension;
+	    	System.out.println(imageLocation);
+	        file = new File(imageLocation);
 	       
 	        multipartFile.transferTo(file);
 	    } catch (IOException e) {
