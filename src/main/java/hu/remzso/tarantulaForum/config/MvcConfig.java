@@ -9,23 +9,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class MvcConfig implements WebMvcConfigurer {
 
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
             .addResourceHandler("/resources/**")
-            .addResourceLocations("/resources/");
+            .addResourceLocations("classpath:/resources/");
         
         registry
-        .addResourceHandler("/static/css/**")
-        .addResourceLocations("classpath:/static/css/");
+            .addResourceHandler("/static/css/**")
+            .addResourceLocations("classpath:/static/css/");
 
-    registry
-        .addResourceHandler("/static/img/**")
-        .addResourceLocations("classpath:/static/img/");
-      
-      }
-    
-    
+        registry
+            .addResourceHandler("/static/img/**")
+            .addResourceLocations("classpath:/static/img/");
 
+        registry
+            .addResourceHandler("/background/**")
+            .addResourceLocations("classpath:/static/css/background/");
+    }
 }

@@ -1,0 +1,61 @@
+/* Általános stílusok */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("/background/background.jpg"); /* Háttérkép beállítása */
+    background-size: cover; /* Háttérkép méretezése az ablakhoz */
+}
+
+header {
+    background-color: transparent; /* Átlátszó fejléc háttérszín */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    margin: 0 5px;
+}
+
+nav a:hover {
+    background-color: #ddd;
+}
+
+.container {
+    margin: 100px auto; /* Felső margó módosítása */
+    width: 300px; /* Szélesség módosítása */
+    height: 300px; /* Magasság hozzáadása */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7); /* Átlátszó háttérszín */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container.register, .container.login {
+    display: inline-block; /* Az elemek egymás mellett helyezése */
+    vertical-align: top; /* Az elemek felső részének igazítása */
+    margin: 100px 10px; /* Felső és alsó margó módosítása, jobb és bal oldali margó automatikus */
+    width: calc(50% - 20px); /* Szélesség számítása az oldalsó margókkal */
+    max-width: 200px; /* Maximális szélesség beállítása */
+    max-height: 130px; /* Maximális magasság beállítása */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7); /* Átlátszó háttérszín */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container.login {
+    float: right;
+}

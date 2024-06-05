@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarantulák listája</title>
+   <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>List of Tarantulas</title>
 </head>
 <body>
-    <h1>Tarantulák listája</h1>
+    <h1>List of Tarantulas</h1>
     <ul>
         <li th:each="tarantula : ${tarantulas}">
             <a th:href="@{'/tarantula?id=' + ${tarantula.id}}">
