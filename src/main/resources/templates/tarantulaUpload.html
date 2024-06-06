@@ -3,48 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Create a tarantula description</title>
+    <title>Tarantula description</title>
+     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
 </head>
-<body>
-    <h1>Tarantula description</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data" id="tarantulaForm">
-        <label for="genus">Genus:</label><br>
-        <input type="text" id="genus" name="genus" required><br><br>
-        
-        <label for="spiece">Spieces:</label><br>
-        <input type="text" id="spieces" name="spieces" required><br><br>
-        
-         <label for="locality">Locality:</label><br>
-        <input type="text" id="locality" name="locality" required><br><br>
-        
-        <label for="color">Color:</label><br>
-        <input type="text" id="color" name="color" required><br><br>
-        
-        <label for="bodySize">Body size (cm):</label><br>
-        <input type="number" id="bodySize" name="bodySize" required><br><br>
-        
-        <label for="legspan">Legspan (cm):</label><br>
-        <input type="number" id="legspan" name="legspan" required><br><br>
-        
-        <label for="type">aggressiveness:</label><br>
-        <input type="text" id="aggressiveness" name="aggressiveness"><br><br>
-        
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
-        
-        <label for="keepInfo">Keeping information:</label><br>
-        <input type="text" id="keepInfo" name="keepInfo" rows="4" cols="50"><br><br>
-        
-        <label for="breedInfo">Breeding information:</label><br>
-        <input type="text" id="breedInfo" name="breedInfo" rows="4" cols="50"><br><br>
-        
-        <label for="images">Pictures:</label><br>
-        <input type="file" id="images" name="images" multiple><br><br>
-        
-        <input type="submit" value="Upload">
-    </form>
-    
+<body class="tarantula">
+    <header>
+        <h1>Upload your own description!</h1>
+    </header>
+   
+        <form action="/upload" method="post" enctype="multipart/form-data" id="tarantulaForm">
+            <label for="genus">Genus:</label><br>
+            <input type="text" id="genus" name="genus" required><br><br>
+            
+            <label for="spiece">Spieces:</label><br>
+            <input type="text" id="spieces" name="spieces" required><br><br>
+            
+            <label for="locality">Locality:</label><br>
+            <input type="text" id="locality" name="locality" required><br><br>
+            
+            <label for="color">Color:</label><br>
+            <input type="text" id="color" name="color" required><br><br>
+            
+            <label for="bodySize">Body size (cm):</label><br>
+            <input type="number" id="bodySize" name="bodySize" required><br><br>
+            
+            <label for="legspan">Legspan (cm):</label><br>
+            <input type="number" id="legspan" name="legspan" required><br><br>
+            
+            <label for="aggressiveness">Aggressiveness:</label><br>
+            <select id="aggressiveness" name="aggressiveness">
+    		<option value="low">Low</option>
+    		<option value="medium">Medium</option>
+    		<option value="high">High</option>
+			</select><br><br>
+            
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+            
+            <label for="keepInfo">Keeping information:</label><br>
+            <textarea id="keepInfo" name="keepInfo" rows="4" cols="50"></textarea><br><br>
+            
+            <label for="breedInfo">Breeding information:</label><br>
+            <textarea id="breedInfo" name="breedInfo" rows="4" cols="50"></textarea><br><br>
+            
+            <label for="images">Pictures:</label><br>
+            <input type="file" id="images" name="images" multiple><br><br>
+            
+            <input type="submit" value="Upload">
+        </form>
+      
     <script>
         document.getElementById("tarantulaForm").addEventListener("submit", function(event) {
             event.preventDefault()

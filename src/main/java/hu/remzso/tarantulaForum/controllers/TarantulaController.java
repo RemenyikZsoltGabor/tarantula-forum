@@ -2,15 +2,10 @@ package hu.remzso.tarantulaForum.controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,11 +59,15 @@ public class TarantulaController {
 	}
 	@GetMapping("/tarantula")
 	public String renderTarantula(@RequestParam("id") Long id, Model model) {
-		
+		List<String> images = new ArrayList<>(); 
+		for(FileEntity fileEntity : fileEntityRepository.findAllByTarantulaID(id).get()) {
+			images.add(fileEntity.getPath());
+		}
 		Tarantula tarantula = tarantulaRepository.findById(id).get();
 		String path = fileEntityRepository.findFirstByTarantulaIDOrderByIdAsc(id).get().getPath();
 		path = path.replace("\\", "/");
 		
+		model.addAttribute("images", images);
 		model.addAttribute("tarantula", tarantula);
 		model.addAttribute("imagePath", path);
 		return "tarantula";
