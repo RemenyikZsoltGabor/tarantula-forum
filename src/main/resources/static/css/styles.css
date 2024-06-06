@@ -3,19 +3,26 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url("/background/background.jpg"); /* Háttérkép beállítása */
+     /* Háttérkép beállítása */
     background-size: cover; /* Háttérkép méretezése az ablakhoz */
 }
-
+body.index{
+	background-image: url("/backgrounds/index_background.jpg");
+}
+body.actualUser{
+	background-image: url("/backgrounds/actualUser_background.jpg");
+}
 header {
     background-color: transparent; /* Átlátszó fejléc háttérszín */
     color: #fff;
     padding: 10px;
     text-align: center;
+    font-size: 200%;
+        
 }
 
 nav {
-    background-color: #f4f4f4;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 10px;
     text-align: center;
 }

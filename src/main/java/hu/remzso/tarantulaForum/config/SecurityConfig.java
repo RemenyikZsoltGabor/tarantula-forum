@@ -28,7 +28,7 @@ public class SecurityConfig {
 		//return http.build();
 		http.csrf().disable()
 		.authorizeHttpRequests(authorize -> authorize
-				.antMatchers("/index","/css/styles.css","/background/background.jpg", "/tarantulas","/static/img/uploadedImages/**","/static/css/**","/tarantula/**","/tarantula","static/**","resources/**","img/**","uploadedImages/**", "/info",  "/registerUser", "/registerAddress", "/register", "/login", "/registrationError","/thanks").permitAll()
+				.antMatchers("/index","/css/styles.css","/backgrounds/**", "/tarantulas","/static/img/uploadedImages/**","/static/css/**","/tarantula/**","/tarantula","static/**","resources/**","img/**","uploadedImages/**", "/info",  "/registerUser", "/registerAddress", "/register", "/login", "/registrationError","/thanks").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin(login -> login
