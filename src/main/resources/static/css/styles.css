@@ -1,20 +1,10 @@
-/* Általános stílusok */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-     /* Háttérkép beállítása */
-    background-size: cover; /* Háttérkép méretezése az ablakhoz */
-}
-body.index{
-	background-image: url("/backgrounds/index_background.jpg");
-}
-body.actualUser{
-	background-image: url("/backgrounds/actualUser_background.jpg");
-}
+
+
+
+
 
 header {
-    background-color: transparent; /* Átlátszó fejléc háttérszín */
+    background-color: transparent; 
     color: #fff;
     padding: 10px;
     text-align: center;
@@ -22,13 +12,31 @@ header {
         
 }
 
+
+
+
+
+/* index */
+
+body.index{
+	background-image: url("/backgrounds/index_background.jpg");
+	font-family: Arial, sans-serif;
+	background-repeat: no-repeat; 
+    background-position: center center; 
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;    
+    background-size: cover;
+}
+
+
 nav {
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px;
     text-align: center;
 }
 
-nav a {
+body.index nav a {
     text-decoration: none;
     color: #333;
     padding: 5px 10px;
@@ -39,32 +47,32 @@ nav a:hover {
     background-color: #ddd;
 }
 
-.container {
-    margin: 100px auto; /* Felső margó módosítása */
-    width: 300px; /* Szélesség módosítása */
-    height: 300px; /* Magasság hozzáadása */
+body.index .container {
+    margin: 100px auto; 
+    width: 300px; 
+    height: 300px; 
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.7); /* Átlátszó háttérszín */
+    background-color: rgba(255, 255, 255, 0.7); 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.container.register, .container.login {
-    display: inline-block; /* Az elemek egymás mellett helyezése */
-    vertical-align: top; /* Az elemek felső részének igazítása */
-    margin: 100px 10px; /* Felső és alsó margó módosítása, jobb és bal oldali margó automatikus */
-    width: calc(50% - 20px); /* Szélesség számítása az oldalsó margókkal */
-    max-width: 200px; /* Maximális szélesség beállítása */
-    max-height: 130px; /* Maximális magasság beállítása */
+ .container.register,  .container.login {
+    display: inline-block; 
+    vertical-align: top; 
+    margin: 100px 10px; 
+    width: calc(50% - 20px); 
+    max-width: 200px; 
+    max-height: 130px; 
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.7); /* Átlátszó háttérszín */
+    background-color: rgba(255, 255, 255, 0.7); 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.container.login {
+body.index .container.login {
     float: right;
 }
 
@@ -80,12 +88,16 @@ nav a:hover {
 body.tarantulaUpload {
 	color: white;
 	background-image: url("/backgrounds/tarantulaUpload_background.jpg");
+	background-size: cover;
+	  background-repeat: no-repeat; 
+    background-position: center center; 
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Teljes képernyős magasság */
-    margin: 0; /* Töröld az alapértelmezett margókat */
-    padding: 0; /* Töröld az alapértelmezett belső kitöltéseket */
+    height: 100vh; 
+    margin: 0; 
+    padding: 0; 
 }
 
 .tarantula #tarantulaForm label {
@@ -103,6 +115,10 @@ body.tarantulaUpload {
 
 body.tarantula {
 	background-image: url("/backgrounds/tarantula_background.jpg");
+	background-size: cover;
+	  background-repeat: no-repeat; 
+    background-position: center center; 
+    background-attachment: fixed;
 	color: white;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -121,33 +137,60 @@ body.tarantula header {
     font-size: 200%;
 }
 
-body.tarantula .container {
+body.tarantula .containerForInformations {
+	background-color: rgb(224, 223, 222, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 20%; /* Kitölti az oldal széleit */
+    max-width: 1200px; /* Opcionális: maximális szélesség beállítása */
+   margin-bottom: 10px;
+   margin-top: 20px;
+    
 }
 
-body.tarantula form {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    width: 90%;
-    max-width: 600px;
+body.tarantula .containerForUploadPictures{
+	align-items: baseline;
+	margin-top: 10px;
 }
 
-body.tarantula label,
-body.tarantula input,
-body.tarantula textarea {
-    width: 100%;
-    margin-bottom: 10px;
+
+body.tarantula .containerForDescriptions {
+	background-color: rgb(224, 223, 222, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 100%; /* Kitölti az oldal széleit */
+    max-width: 1200px; /* Opcionális: maximális szélesség beállítása */
+    margin: 0 auto; /* Középre igazítás */
+    ;
 }
 
-body.tarantula input[type="submit"] {
-    width: auto;
-    cursor: pointer;
+
+body.tarantula li:hover {
+background-color: rgb(255, 0, 0);
+}
+
+body.tarantula ul {
+    list-style-type: none; /* Kis gömbök eltávolítása */
+    padding: 0;
+    float: left;
+}
+
+body.tarantula li {
+    margin-bottom: 20px; /* Térköz a listaelemek között */
+   
+}
+
+body.tarantula strong {
+    font-weight: bold; /* Félkövér címsorok */
+    display: block; /* Minden cím új sorban kezdődjön */
+}
+
+body.tarantula p {
+   
+    padding: 10px; /* Belső tér */
+    margin-bottom: 10px; /* Térköz a bekezdések között */
 }
 
 
@@ -157,5 +200,175 @@ body.tarantula input[type="submit"] {
 
 
 /*register*/
+
+
+body.register {
+	background-image: url("/backgrounds/register_background.jpg");
+	background-size: cover;
+	  background-repeat: no-repeat; 
+    background-position: center center; 
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+body.register .container {
+    margin: 100px auto;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register input[type="text"],
+.register input[type="password"],
+.register input[type="number"],
+.register input[type="email"],
+.register input[type="submit"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.register input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.register input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+/*registerAddress*/
+
+body.registerAddress {
+	background-image: url("/backgrounds/register_background.jpg");
+	background-size: cover;
+	  background-repeat: no-repeat; 
+    background-position: center center; 
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.registerAddress .container {
+    margin: 100px auto;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registerAddress h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.registerAddress form {
+    display: flex;
+   flex-direction: column;
+}
+
+
+
+.registerAddress input[type="text"],
+.registerAddress input[type="submit"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.registerAddress input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.register input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+/*actualUser*/
+body.actualUser{
+	background-image: url("/backgrounds/actualUser_background.jpg");
+background-size: cover;
+  background-repeat: no-repeat; 
+    background-position: center center; 
+    background-attachment: fixed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*tarantulas*/
+
+
+
+
+body.tarantulas {
+      background-image: url("/backgrounds/tarantulas_background.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+    background-attachment: fixed; 
+}
+
+body.tarantulas a {
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+body.tarantulas a:hover {
+    color: red;
+    font-size: 50px;
+}
+
+body.tarantulas a p {
+    margin: 0; 
+}
+body.tarantulas li {
+    margin-bottom: 37.8px; 
+}
+
 
 

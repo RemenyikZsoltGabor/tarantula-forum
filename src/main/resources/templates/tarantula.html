@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
-    <title>Pamphobeteus sp. goliath</title>
+    <title th:text="${tarantula.genus + ' ' + tarantula.spieces}"></title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .gallery {
@@ -83,9 +83,9 @@
 </head>
 <body class="tarantula">
     <header>
-        <h1 class="title">Pamphobeteus sp. goliath</h1>
+        <h1 th:text="${tarantula.genus} + ' ' + ${tarantula.spieces}">Tarantula Name</h1>
     </header>
-    <main>
+    
         <div class="gallery">
             <div class="thumbnail" th:each="image : ${images}">
                 <img th:src="@{${image}}" alt="Tarantula">
@@ -95,18 +95,28 @@
             <span class="close">&times;</span>
             <img class="modal-content" id="img01">
         </div>
-        <ul>
-            <li><strong>Locality:</strong> <span th:text="${tarantula.location}"></span></li>
-            <li><strong>Color:</strong> <span th:text="${tarantula.color}"></span></li>
-            <li><strong>Leg Span:</strong> <span th:text="${tarantula.legspan}"></span></li>
-            <li><strong>Body Length:</strong><span th:text="${tarantula.bodyLength}"></span></li>
-            <li><strong>Aggressiveness:</strong><span th:text="${tarantula.aggressiveness}"></span></li>
-        </ul>
-        <p><strong>Description:</strong><span th:text="${tarantula.description}" ></span></p>
-        <p><strong>Keeping info:</strong><span th:text="${tarantula.keepInfo}"></span> </p>
-        <p><strong>Breeding info:</strong><span th:text="${tarantula.breedInfo}"></span> </p>
-    </main>
-
+        
+     <div class="containerForInformations">
+    <ul>
+        <li><strong>Locality:</strong> <span th:text="${tarantula.location}"></span></li>
+        <li><strong>Color:</strong> <span th:text="${tarantula.color}"></span></li>
+        <li><strong>Leg Span:</strong> <span th:text="${tarantula.legspan}"></span></li>
+        <li><strong>Body Length:</strong><span th:text="${tarantula.bodyLength}"></span></li>
+        <li><strong>Aggressiveness:</strong><span th:text="${tarantula.aggressiveness}"></span></li>
+    </ul>
+    </div>
+    
+    <div class="containerForDescriptions">
+    <p><strong>Description:</strong><span th:text="${tarantula.description}" ></span></p>
+    <p><strong>Keeping info:</strong><span th:text="${tarantula.keepInfo}"></span> </p>
+    <p><strong>Breeding info:</strong><span th:text="${tarantula.breedInfo}"></span> </p>
+</div>
+    
+<div class="containerForUploadPictures">
+        	<input type="file" id="images" name="images" multiple><br><br>
+       		<a href="/uploadPicrures"><button>Upload picures</button></a>
+    
+    	</div>
     <script>
         $(document).ready(function() {
             $(".thumbnail img").click(function() {

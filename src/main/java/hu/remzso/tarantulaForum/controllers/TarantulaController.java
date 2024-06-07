@@ -66,7 +66,6 @@ public class TarantulaController {
 		Tarantula tarantula = tarantulaRepository.findById(id).get();
 		String path = fileEntityRepository.findFirstByTarantulaIDOrderByIdAsc(id).get().getPath();
 		path = path.replace("\\", "/");
-		
 		model.addAttribute("images", images);
 		model.addAttribute("tarantula", tarantula);
 		model.addAttribute("imagePath", path);
@@ -126,9 +125,7 @@ public class TarantulaController {
 		if(tarantulaRepository.findByGenusAndSpieces(tarantula.getGenus(), tarantula.getSpieces()).isPresent()) {
 			 return ResponseEntity.badRequest().body("This spider already exist!");
 		}
-		
-		
-		// itt egy ciklus kell, hogy feldolgozzuk a bejövő képeket !!!!
+			
 		String tarantulaName = tarantula.getGenus()+"_"+tarantula.getSpieces();
 		int index = 0;
 		for(MultipartFile multipartFile : images) {

@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" type="text/css" href="styles.css">
+   <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
     <title>Address registration</title>
   
 </head>
-<body>
+<body class="registerAddress">
     <div class="container">
-        <h2>Cím Regisztráció</h2>
+        <h2>Address registration</h2>
         <form action="/registerAddress" method="post">
-            <label for="country">Ország:</label>
+            <label for="country">Country:</label>
             <input type="text" id="country" name="country" required><br><br>
             
-            <label for="city">Város:</label>
+            <label for="city">City:</label>
             <input type="text" id="city" name="city" required><br><br>
             
-            <label for="street">Utca:</label>
+            <label for="street">Street:</label>
             <input type="text" id="street" name="street" required><br><br>
             
-            <label for="number">Házszám:</label>
+            <label for="number">Number:</label>
             <input type="text" id="number" name="number" required><br><br>
             
-            <label for="postCode">Irányítószám:</label>
+            <label for="postCode">Postcode:</label>
             <input type="text" id="postCode" name="postCode" required><br><br>
             
-            <input type="submit" value="Regisztráció">
+            <input type="submit" value="Registration">
         </form>
     </div>
 </body>
