@@ -1,82 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarantula description</title>
-     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tarantula description</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/styles.css">
 </head>
+
 <body class="tarantulaUpload">
-    <header>
-        <h1>Upload your own description!</h1>
-    </header>
-   
-        <form action="/upload" method="post" enctype="multipart/form-data" id="tarantulaForm">
-            <label for="genus">Genus:</label><br>
-            <input type="text" id="genus" name="genus" required><br><br>
-            
-            <label for="spiece">Spieces:</label><br>
-            <input type="text" id="spieces" name="spieces" required><br><br>
-            
-            <label for="locality">Locality:</label><br>
-            <input type="text" id="locality" name="locality" required><br><br>
-            
-            <label for="color">Color:</label><br>
-            <input type="text" id="color" name="color" required><br><br>
-            
-            <label for="bodySize">Body size (cm):</label><br>
-            <input type="number" id="bodySize" name="bodySize" required><br><br>
-            
-            <label for="legspan">Legspan (cm):</label><br>
-            <input type="number" id="legspan" name="legspan" required><br><br>
-            
-            <label for="aggressiveness">Aggressiveness:</label><br>
-            <select id="aggressiveness" name="aggressiveness">
-    		<option value="low">Low</option>
-    		<option value="medium">Medium</option>
-    		<option value="high">High</option>
+
+	<div class="containerForUploadDescription">
+		<h2>Upload your description</h2>
+		<form action="/upload" method="post" enctype="multipart/form-data" id="tarantulaForm">
+			<label for="genus">Genus:</label><br>
+			<input type="text" id="genus" name="genus" required><br><br>
+
+			<label for="spiece">Spieces:</label><br>
+			<input type="text" id="spieces" name="spieces" required><br><br>
+
+			<label for="location">Location:</label><br>
+			<input type="text" id="location" name="location" required><br><br>
+
+			<label for="color">Color:</label><br>
+			<input type="text" id="color" name="color" required><br><br>
+
+			<label for="bodyLength">Body size (cm):</label><br>
+			<input type="number" id="bodyLength" name="bodyLength" required><br><br>
+
+			<label for="legspan">Legspan (cm):</label><br>
+			<input type="number" id="legspan" name="legspan" required><br><br>
+
+			<label for="aggressiveness">Aggressiveness:</label><br>
+			<select id="aggressiveness" name="aggressiveness">
+				<option value="low">Low</option>
+				<option value="medium">Medium</option>
+				<option value="high">High</option>
 			</select><br><br>
-            
-            <label for="description">Description:</label><br>
-            <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
-            
-            <label for="keepInfo">Keeping information:</label><br>
-            <textarea id="keepInfo" name="keepInfo" rows="4" cols="50"></textarea><br><br>
-            
-            <label for="breedInfo">Breeding information:</label><br>
-            <textarea id="breedInfo" name="breedInfo" rows="4" cols="50"></textarea><br><br>
-            
-            <label for="images">Pictures:</label><br>
-            <input type="file" id="images" name="images" multiple><br><br>
-            
-            <input type="submit" value="Upload">
-        </form>
-      
-    <script>
-        document.getElementById("tarantulaForm").addEventListener("submit", function(event) {
-            event.preventDefault()
 
-            var formData = new FormData(this);
+			<label for="description">Description:</label><br>
+			<textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
 
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text) });
-                }
-                return response.text();
-            })
-            .then(data => {              
-                alert("Sikeres feltöltés!");
-                document.getElementById("tarantulaForm").reset();
-            })
-            .catch(error => {      
-                alert("Hiba történt: " + error.message);
-                document.getElementById("tarantulaForm").reset();
-            });
-        });
-    </script>
+			<label for="keepInfo">Keeping information:</label><br>
+			<textarea id="keepInfo" name="keepInfo" rows="4" cols="50"></textarea><br><br>
+
+			<label for="breedInfo">Breeding information:</label><br>
+			<textarea id="breedInfo" name="breedInfo" rows="4" cols="50"></textarea><br><br>
+
+			<label for="images">Pictures:</label><br>
+			<input type="file" id="images" name="images" multiple><br><br>
+
+			<input type="submit" value="Upload">
+		</form>
+	</div>
+	<script>
+		document.getElementById("tarantulaForm").addEventListener("submit", function (event) {
+			event.preventDefault()
+
+			var formData = new FormData(this);
+
+			fetch('/upload', {
+				method: 'POST',
+				body: formData
+			})
+				.then(response => {
+					if (!response.ok) {
+						return response.text().then(text => {throw new Error(text)});
+					}
+					return response.text();
+				})
+				.then(data => {
+					alert("Sikeres feltöltés!");
+					document.getElementById("tarantulaForm").reset();
+				})
+				.catch(error => {
+					alert("Hiba történt: " + error.message);
+					document.getElementById("tarantulaForm").reset();
+				});
+		});
+	</script>
 </body>
+
 </html>

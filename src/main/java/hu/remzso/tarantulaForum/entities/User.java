@@ -1,8 +1,5 @@
 package hu.remzso.tarantulaForum.entities;
 
-
-
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +13,9 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,13 +33,15 @@ public class User {
 	String lastName;
 	@Column(name = "AGE")
 	int age;
-	@Column(name ="EMAIL")
+	@Column(name = "EMAIL")
 	String email;
 	@Column(name = "USERNAME")
 	String username;
 	@Column(name = "PASSWORD")
 	String password;
 	@Column(name = "ADDRESS")
-	@OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	List<Address> addresses;
 }

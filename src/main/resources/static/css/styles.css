@@ -1,236 +1,253 @@
-
-
-
-
-
+/* header */
 header {
-    background-color: transparent; 
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    font-size: 200%;
-        
+	background-color: transparent;
+	color: #fff;
+	padding: 10px;
+	text-align: center;
+	font-size: 200%;
 }
-
-
-
-
 
 /* index */
-
-body.index{
+body.index {
 	background-image: url("/backgrounds/index_background.jpg");
 	font-family: Arial, sans-serif;
-	background-repeat: no-repeat; 
-    background-position: center center; 
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;    
-    background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	margin: 0;
+	padding: 0;
+	background-size: cover;
 }
 
-
 nav {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px;
-    text-align: center;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 10px;
+	text-align: center;
 }
 
 body.index nav a {
-    text-decoration: none;
-    color: #333;
-    padding: 5px 10px;
-    margin: 0 5px;
+	text-decoration: none;
+	color: #333;
+	padding: 5px 10px;
+	margin: 0 5px;
 }
 
 nav a:hover {
-    background-color: #ddd;
+	background-color: #ddd;
 }
 
 body.index .container {
-    margin: 100px auto; 
-    width: 300px; 
-    height: 300px; 
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.7); 
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 100px auto;
+	width: 300px;
+	height: 300px;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
- .container.register,  .container.login {
-    display: inline-block; 
-    vertical-align: top; 
-    margin: 100px 10px; 
-    width: calc(50% - 20px); 
-    max-width: 200px; 
-    max-height: 130px; 
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.7); 
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.container.register,
+.container.login {
+	display: inline-block;
+	vertical-align: top;
+	margin: 100px 10px;
+	width: calc(50% - 20px);
+	max-width: 200px;
+	max-height: 130px;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 body.index .container.login {
-    float: right;
+	float: right;
 }
 
-
-
-
-
-
-
-
-/*tarantulaUpload*/
-
+/* tarantulaUpload */
 body.tarantulaUpload {
-	color: white;
+	color: rgb(0, 0, 0);
 	background-image: url("/backgrounds/tarantulaUpload_background.jpg");
 	background-size: cover;
-	  background-repeat: no-repeat; 
-    background-position: center center; 
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-    margin: 0; 
-    padding: 0; 
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+}
+
+body.tarantulaUpload h2 {
+	font-size: 200%;
 }
 
 .tarantula #tarantulaForm label {
 	color: black;
-    text-align: center;
-    width: 100%;
+	text-align: center;
+	width: 100%;
 }
 
 
 
-/*tarantula*/
 
+body.tarantulaUpload .containerForUploadDescription {
+	margin: 100px auto;
+	width: 300px;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	color: black;
+}
 
-	
+.tarantulaUpload h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
 
+.tarantulaUpload form {
+	display: flex;
+	flex-direction: column;
+}
+
+.tarantulaUpload input[type="text"],
+.tarantulaUpload input[type="number"] {
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.tarantulaUpload input[type="submit"] {
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
+}
+
+.tarantulaUpload input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+
+/* tarantula */
 body.tarantula {
 	background-image: url("/backgrounds/tarantula_background.jpg");
 	background-size: cover;
-	  background-repeat: no-repeat; 
-    background-position: center center; 
-    background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
 	color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-size: cover;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-size: cover;
 }
 
 body.tarantula header {
-    background-color: transparent;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    font-size: 200%;
+	background-color: transparent;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+	font-size: 200%;
 }
 
 body.tarantula .containerForInformations {
-	background-color: rgb(224, 223, 222, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%; /* Kitölti az oldal széleit */
-    max-width: 1200px; /* Opcionális: maximális szélesség beállítása */
-   margin-bottom: 10px;
-   margin-top: 20px;
-    
+	background-color: rgba(224, 223, 222, 0.2);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 20%;
+	/* Kitölti az oldal széleit */
+	max-width: 1200px;
+	/* Opcionális: maximális szélesség beállítása */
+	margin-bottom: 10px;
+	margin-top: 20px;
 }
 
-body.tarantula .containerForUploadPictures{
+body.tarantula .containerForUploadPictures {
 	align-items: baseline;
 	margin-top: 10px;
 }
 
-
 body.tarantula .containerForDescriptions {
-	background-color: rgb(224, 223, 222, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    width: 100%; /* Kitölti az oldal széleit */
-    max-width: 1200px; /* Opcionális: maximális szélesség beállítása */
-    margin: 0 auto; /* Középre igazítás */
-    ;
+	background-color: rgba(224, 223, 222, 0.2);
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	width: 100%;
+	/* Kitölti az oldal széleit */
+	max-width: 1200px;
+	/* Opcionális: maximális szélesség beállítása */
+	margin: 0 auto;
+	/* Középre igazítás */
 }
 
-
 body.tarantula li:hover {
-background-color: rgb(255, 0, 0);
+	background-color: rgb(255, 0, 0);
 }
 
 body.tarantula ul {
-    list-style-type: none; /* Kis gömbök eltávolítása */
-    padding: 0;
-    float: left;
+	list-style-type: none;
+	/* Kis gömbök eltávolítása */
+	padding: 0;
+	float: left;
 }
 
 body.tarantula li {
-    margin-bottom: 20px; /* Térköz a listaelemek között */
-   
+	margin-bottom: 20px;
+	/* Térköz a listaelemek között */
 }
 
 body.tarantula strong {
-    font-weight: bold; /* Félkövér címsorok */
-    display: block; /* Minden cím új sorban kezdődjön */
+	font-weight: bold;
+	/* Félkövér címsorok */
+	display: block;
+	/* Minden cím új sorban kezdődjön */
 }
 
 body.tarantula p {
-   
-    padding: 10px; /* Belső tér */
-    margin-bottom: 10px; /* Térköz a bekezdések között */
+	padding: 10px;
+	/* Belső tér */
+	margin-bottom: 10px;
+	/* Térköz a bekezdések között */
 }
 
-
-
-
-
-
-
-/*register*/
-
-
+/* register */
 body.register {
 	background-image: url("/backgrounds/register_background.jpg");
 	background-size: cover;
-	  background-repeat: no-repeat; 
-    background-position: center center; 
-    background-attachment: fixed;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 body.register .container {
-    margin: 100px auto;
-    width: 300px;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 100px auto;
+	width: 300px;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .register h2 {
-    text-align: center;
-    margin-bottom: 20px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .register form {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .register input[type="text"],
@@ -238,137 +255,167 @@ body.register .container {
 .register input[type="number"],
 .register input[type="email"],
 .register input[type="submit"] {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
 }
 
 .register input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
 }
 
 .register input[type="submit"]:hover {
-    background-color: #0056b3;
+	background-color: #0056b3;
 }
 
-
-/*registerAddress*/
-
+/* registerAddress */
 body.registerAddress {
 	background-image: url("/backgrounds/register_background.jpg");
 	background-size: cover;
-	  background-repeat: no-repeat; 
-    background-position: center center; 
-    background-attachment: fixed;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .registerAddress .container {
-    margin: 100px auto;
-    width: 300px;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 100px auto;
+	width: 300px;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .registerAddress h2 {
-    text-align: center;
-    margin-bottom: 20px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .registerAddress form {
-    display: flex;
-   flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
-
-
 
 .registerAddress input[type="text"],
 .registerAddress input[type="submit"] {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
 }
 
 .registerAddress input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
 }
 
-.register input[type="submit"]:hover {
-    background-color: #0056b3;
+.registerAddress input[type="submit"]:hover {
+	background-color: #0056b3;
 }
 
-
-
-
-
-
-
-
-
-
-/*actualUser*/
-body.actualUser{
+/* actualUser */
+body.actualUser {
 	background-image: url("/backgrounds/actualUser_background.jpg");
-background-size: cover;
-  background-repeat: no-repeat; 
-    background-position: center center; 
-    background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
 }
 
+body.actualUser nav a {
+	text-decoration: none;
+	color: #333;
+	padding: 5px 10px;
+	margin: 0 5px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-/*tarantulas*/
-
-
-
-
+/* tarantulas */
 body.tarantulas {
-      background-image: url("/backgrounds/tarantulas_background.jpg");
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center center; 
-    background-attachment: fixed; 
+	background-image: url("/backgrounds/tarantulas_background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
 }
 
 body.tarantulas a {
-    color: white;
-    font-size: 40px;
-    text-decoration: none;
-    transition: color 0.3s ease, font-size 0.3s ease;
+	color: white;
+	font-size: 40px;
+	text-decoration: none;
+	transition: color 0.3s ease, font-size 0.3s ease;
 }
 
 body.tarantulas a:hover {
-    color: red;
-    font-size: 50px;
+	color: red;
+	font-size: 50px;
 }
 
 body.tarantulas a p {
-    margin: 0; 
+	margin: 0;
 }
+
 body.tarantulas li {
-    margin-bottom: 37.8px; 
+	margin-bottom: 37.8px;
 }
 
 
 
+
+/* Message */
+
+body.message {
+	background-image: url("/backgrounds/message_background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+body.message .containerForMessage {
+	margin: 100px auto;
+	width: 300px;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	color: black;
+}
+
+.message h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.message form {
+	display: flex;
+	flex-direction: column;
+}
+
+.message input[type="text"],
+.message input[type="number"] {
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.message input[type="submit"] {
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
+}
+
+.message input[type="submit"]:hover {
+	background-color: #0056b3;
+}

@@ -1,24 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome!</title>
- <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Welcome!</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+	<style>
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+			z-index: 1;
+		}
+
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+
+		.notification-dot {
+			height: 10px;
+			width: 10px;
+			background-color: red;
+			border-radius: 50%;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	</style>
 </head>
+
 <body class="actualUser">
-    <header>
-        <h1>Welcome!</h1>
-        
-    </header>
-    <nav>
-        <a href="/tarantulas">List of tarantulas</a>
-        <a href="/uploadTarantula">Upload description</a>
-        <a href="/profile">Profile</a>
-        <a href="/messages">Messages</a>
-        <a href="/forum">Forum</a>
-        <a href="/logOut">Log out</a>
-    </nav>
-    
+	<header>
+		<h1>Welcome!</h1>
+	</header>
+	<nav>
+		<div class="dropdown">
+			<a href="#">
+				Messages
+				<span class="notification-dot"></span>
+			</a>
+			<div class="dropdown-content">
+				<a href="/writeMessage">Write message</a>
+				<a href="/ownMessages">Own messages</a>
+			</div>
+		</div>
+		<a href="/tarantulas">List of tarantulas</a>
+		<a href="/uploadTarantula">Upload description</a>
+		<a href="/profile">Profile</a>
+		<a href="/forum">Forum</a>
+		<a href="/logOut">Log out</a>
+	</nav>
+
+	<script>
+
+		document.addEventListener('click', function (event) {
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			for (var i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.style.display === "block" && !event.target.matches('.dropdown')) {
+					openDropdown.style.display = "none";
+				}
+			}
+		});
+	</script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			function checkForNewMessages() {
+				fetch('/messages/unread-count')
+					.then(response => response.json())
+					.then(data => {
+						if (data > 0) {
+							showNotificationDot();
+						} else {
+							hideNotificationDot();
+						}
+					})
+					.catch(error => console.error('Error checking messages:', error));
+			}
+
+			function showNotificationDot() {
+				const messageLink = document.querySelector('.dropdown > a');
+				if (!messageLink.querySelector('.notification-dot')) {
+					const dot = document.createElement('span');
+					dot.className = 'notification-dot';
+					messageLink.appendChild(dot);
+				}
+			}
+
+			function hideNotificationDot() {
+				const messageLink = document.querySelector('.dropdown > a');
+				const dot = messageLink.querySelector('.notification-dot');
+				if (dot) {
+					messageLink.removeChild(dot);
+				}
+			}
+
+			checkForNewMessages();
+			setInterval(checkForNewMessages, 6000); // Check every 6 seconds
+		});
+	</script>
 </body>
+
 </html>

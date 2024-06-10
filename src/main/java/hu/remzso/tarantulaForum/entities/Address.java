@@ -1,6 +1,5 @@
 package hu.remzso.tarantulaForum.entities;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,9 @@ import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +35,8 @@ public class Address {
 	@Column(name = "postCode")
 	int postCode;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="USER_ID")
+	@JoinColumn(name = "USER_ID")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	User user;
 }

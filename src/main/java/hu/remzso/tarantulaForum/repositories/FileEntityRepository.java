@@ -8,8 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import hu.remzso.tarantulaForum.entities.FileEntity;
 
 public interface FileEntityRepository extends JpaRepository<FileEntity, Long> {
-	
-	 Optional<FileEntity> findFirstByTarantulaIDOrderByIdAsc(Long tarantulaId);
+
+	Optional<FileEntity> findFirstByTarantulaIDOrderByIdAsc(Long tarantulaId);
+
 	Long countByTarantulaID(Long tarantulaId);
+
 	Optional<List<FileEntity>> findAllByTarantulaID(Long tarantulaId);
 }

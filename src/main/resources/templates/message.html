@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Messages</title>
-   
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+	<title>Message</title>
 </head>
-<body>
-    <h2>Üzenet küldése</h2>
-    <form action="/sendMessage" method="post">
-        <label for="sender">Feladó:</label><br>
-        <input type="text" id="sender" name="sender" placeholder="Feladó neve" required><br>
-        <label for="recipient">Címzett:</label><br>
-        <input type="text" id="recipient" name="recipient" placeholder="Címzett neve" required><br>
-        <label for="message">Üzenet:</label><br>
-        <textarea id="message" name="message" placeholder="Írja ide az üzenetet" required></textarea><br>
-        <input type="submit" value="Küldés">
-    </form>
+
+<body class="message">
+	<div class="containerForMessage">
+		<h2>Send a message</h2>
+		<form action="/sendMessage" method="post">
+
+			<label for="recipients">Recipients:</label><br>
+			<input type="text" id="recipients" name="recipients" required><br><br>
+
+			<label for="message">Message:</label><br>
+			<textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+			<input type="submit" value="Send">
+		</form>
+	</div>
+
 </body>
+
 </html>
