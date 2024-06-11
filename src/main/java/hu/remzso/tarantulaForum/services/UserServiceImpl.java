@@ -14,7 +14,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public String saveUser(User user) {
-		System.out.println("SAVEUSERMETHOD");
 		return userRepository.save(user).getFirstName();
 		
 	}

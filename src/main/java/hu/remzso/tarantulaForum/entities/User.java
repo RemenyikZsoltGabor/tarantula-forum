@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import hu.remzso.tarantulaForum.converters.UserSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,6 +25,7 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name = "users")
+@JsonSerialize(using = UserSerializer.class)
 public class User {
 
 	@Id

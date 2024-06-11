@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Felhasználói Üzenetek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .message-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .message-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .message-list li.unread {
+            font-weight: bold;
+        }
+        .message-content {
+            display: none;
+            margin-top: 20px;
+        }
+        .message-content p {
+            margin: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/messages')
+                .then(response => response.json())
+                .then(data => {
+                    const messageList = document.getElementById('messageList');
+                    data.forEach(message => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = message.tittle;
+                        if (!message.isReaded) {
+                            listItem.classList.add('unread');
+                        }
+                        listItem.addEventListener('click', () => {
+                            showMessageContent(message);
+                        });
+                        messageList.appendChild(listItem);
+                    });
+                });
+        });
+
+        function showMessageContent(message) {
+            const messageContent = document.getElementById('messageContent');
+            messageContent.innerHTML = `
+                <h2>${message.tittle}</h2>
+                <p><strong>From:</strong> ${message.sender.name}</p>
+                <p><strong>To:</strong> ${message.recipients.map(user => user.name).join(', ')}</p>
+                <p><strong>Sent on:</strong> ${new Date(message.createdAt).toLocaleString()}</p>
+                <p>${message.content}</p>
+            `;
+            messageContent.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <h1>Felhasználói Üzenetek</h1>
+    <ul id="messageList" class="message-list"></ul>
+    <div id="messageContent" class="message-content"></div>
+</body>
+</html>

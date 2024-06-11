@@ -26,6 +26,9 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "TITTLE")
+	private String tittle;
+	
 	@ManyToOne
 	private User sender;
 
@@ -33,8 +36,8 @@ public class Message {
 	private Set<User> recipients;
 
 	@Lob
-	@Column(name = "TEXT")
-	private String text;
+	@Column(name = "CONTENT")
+	private String content;
 
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;

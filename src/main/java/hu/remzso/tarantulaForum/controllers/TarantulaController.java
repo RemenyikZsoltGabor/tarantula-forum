@@ -141,14 +141,20 @@ public class TarantulaController {
 	}
 
 	@RequestMapping("/writeMessage")
-	public String renderMessage() {
+	public String renderWriteMessagePage() {
 
 		return "message";
+	}
+	@RequestMapping("/ownMessages")
+	public String renderMessage() {
+
+		return "ownMessages";
 	}
 
 	@RequestMapping("/sendMessage")
 	public String sengMessage(@RequestParam("recipients") String recipients,
-			@RequestParam("message") String messageToSend) {
+			@RequestParam("message") String messageToSend,
+			@RequestParam("tittle") String tittle) {
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -157,9 +163,11 @@ public class TarantulaController {
 
 		// A fentiekhez kellenek majd ellenőrzések!!!!
 
+		//Kell egy logika ami ellenőrzi, hogy email cím avgy felhasználónév alapján küldünk üzenetet.
+		
+		// ha ez a metódus kivételt dob akkor arra reagálni kell kliens oldalon.
 		Set<User> recipientUsers = createUseresFromUsernames(recipients);
-
-		Message message = new Message(null, sender, recipientUsers, messageToSend, LocalDateTime.now(), false);
+		Message message = new Message(null, tittle,sender, recipientUsers, messageToSend, LocalDateTime.now(), false);
 		messageRepository.save(message);
 		return "actualUser";
 	}

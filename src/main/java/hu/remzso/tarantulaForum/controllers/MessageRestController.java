@@ -2,6 +2,8 @@ package hu.remzso.tarantulaForum.controllers;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,11 +16,13 @@ import hu.remzso.tarantulaForum.repositories.MessageRepository;
 import hu.remzso.tarantulaForum.repositories.UserRepository;
 
 @RestController
+@Transactional
 public class MessageRestController {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private MessageRepository messageRepository;
+	
 
 	@GetMapping("/messages/unread-count")
 	public ResponseEntity<Integer> getunreadMessageCount() {
@@ -27,5 +31,14 @@ public class MessageRestController {
 		List<Message> unreadMessages = messageRepository.findUnreadMessagesByUserId(id);
 
 		return ResponseEntity.ok(unreadMessages.size());
+	}
+	
+	@GetMapping("/messages")
+	public ResponseEntity<List<Message>> getMessages() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		long id = userRepository.findByUsername(authentication.getName()).getId();
+		List<Message> messages = messageRepository.findMessagesByUserId(id);
+	
+		return ResponseEntity.ok(messages);
 	}
 }
