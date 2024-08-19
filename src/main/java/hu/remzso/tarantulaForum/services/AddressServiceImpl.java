@@ -12,10 +12,10 @@ public class AddressServiceImpl implements AddressService {
 	private AddressRepository addressRepository;
 
 	@Override
-	public String saveAddress(Address address) {
+	public Address saveAddress(Address address) {
 		
-		addressRepository.save(address);
-		return null;
+		return addressRepository.save(address);
+
 	}
 
 }

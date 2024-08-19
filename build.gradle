@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.3'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'groovy'
 }
 
 group = 'hu.remzso'
@@ -33,6 +34,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.postgresql:postgresql:42.2.20'
 	 implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+	testImplementation 'org.codehaus.groovy:groovy-sql:3.0.10'
+	testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
+	testImplementation 'org.spockframework:spock-spring:2.1-groovy-3.0'
 }
 
 tasks.named('test') {

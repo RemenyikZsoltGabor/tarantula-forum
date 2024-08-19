@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public User getSender(String username) {
+		return userRepository.findByUsername(username);
+	}
+
 }

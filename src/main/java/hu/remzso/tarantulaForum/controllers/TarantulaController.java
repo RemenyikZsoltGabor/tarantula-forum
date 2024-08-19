@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import hu.remzso.tarantulaForum.services.FileEntityService;
+import hu.remzso.tarantulaForum.services.TarantulaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +59,10 @@ public class TarantulaController {
 	private UserRepository userRepository;
 	@Autowired
 	private MessageRepository messageRepository;
+	@Autowired
+	private TarantulaService tarantulaService;
+	@Autowired
+	private FileEntityService fileEntityService;
 
 	@RequestMapping("/login")
 	public String login() {
@@ -78,16 +84,11 @@ public class TarantulaController {
 
 	@GetMapping("/tarantula")
 	public String renderTarantula(@RequestParam("id") Long id, Model model) {
-		List<String> images = new ArrayList<>();
-		for (FileEntity fileEntity : fileEntityRepository.findAllByTarantulaID(id).get()) {
-			images.add(fileEntity.getPath());
-		}
-		Tarantula tarantula = tarantulaRepository.findById(id).get();
 
-		String path = fileEntityRepository.findFirstByTarantulaIDOrderByIdAsc(id).get().getPath();
+		String path = fileEntityService.getImagePath(id);
 		path = path.replace("\\", "/");
-		model.addAttribute("images", images);
-		model.addAttribute("tarantula", tarantula);
+		model.addAttribute("images", fileEntityService.getImagePaths(id));
+		model.addAttribute("tarantula", tarantulaService.getTarantula(id));
 		model.addAttribute("imagePath", path);
 		return "tarantula";
 	}
@@ -128,7 +129,7 @@ public class TarantulaController {
 
 	@RequestMapping("/tarantulas")
 	public String listTarantulas(Model model) {
-		List<Tarantula> tarantulas = tarantulaRepository.findAll();
+		List<Tarantula> tarantulas = tarantulaService.getAllTarantulas();
 		Collections.sort(tarantulas);
 		model.addAttribute("tarantulas", tarantulas);
 		return "tarantulas";
@@ -158,8 +159,7 @@ public class TarantulaController {
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		String username = userDetails.getUsername();
-		User sender = userRepository.findByUsername(username);
+		User sender = userServiceImpl.getSender(userDetails.getUsername());
 
 		// A fentiekhez kellenek majd ellenőrzések!!!!
 
@@ -176,7 +176,7 @@ public class TarantulaController {
 	public ResponseEntity<String> uploadTarantula(@RequestPart("images") List<MultipartFile> images,
 			@ModelAttribute Tarantula tarantula) throws IOException {
 
-		if (tarantulaRepository.findByGenusAndSpieces(tarantula.getGenus(), tarantula.getSpieces()).isPresent()) {
+		if (tarantulaService.isTarantulaExistByGenusAndSpecies(tarantula.getGenus(),tarantula.getSpieces())) {
 			return ResponseEntity.badRequest().body("This spider already exist!");
 		}
 
@@ -187,15 +187,15 @@ public class TarantulaController {
 			File file = convertMultipartFileToFile(multipartFile, tarantulaName, index);
 			FileEntity fileEntity = new FileEntity();
 
-			fileEntity.setTarantulaID(tarantulaRepository.save(tarantula).getId());
+			fileEntity.setTarantulaID(tarantulaService.saveTarantula(tarantula).getId());
 			fileEntity.setPath(imagesPathToDB + file.getName());
 
-			fileEntityRepository.save(fileEntity);
+			fileEntityService.saveFileEntity(fileEntity);
 			index++;
 
 		}
 		tarantula.setImagesNumber(index);
-		tarantulaRepository.save(tarantula);
+		tarantulaService.saveTarantula(tarantula);
 
 		return ResponseEntity.ok().body("Saved");
 	}
@@ -217,7 +217,7 @@ public class TarantulaController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No images selected");
 		}
 
-		Tarantula tarantula = tarantulaRepository.findById(id).get();
+		Tarantula tarantula = tarantulaService.getTarantula(id);
 
 		String tarantulaName = tarantula.getGenus() + "_" + tarantula.getSpieces();
 		int index = tarantula.getImagesNumber();
@@ -235,7 +235,7 @@ public class TarantulaController {
 		}
 		tarantula.setImagesNumber(index);
 
-		tarantulaRepository.save(tarantula);
+		tarantulaService.saveTarantula(tarantula);
 
 		return ResponseEntity.ok().body("Images are saved");
 	}
