@@ -3,7 +3,6 @@ package hu.remzso.tarantulaForum.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Set;
 
 import hu.remzso.tarantulaForum.services.FileEntityService;
 import hu.remzso.tarantulaForum.services.TarantulaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -37,7 +35,6 @@ import hu.remzso.tarantulaForum.exceptions.EmailNotFoundException;
 import hu.remzso.tarantulaForum.exceptions.UsernameNotFoundException;
 import hu.remzso.tarantulaForum.repositories.FileEntityRepository;
 import hu.remzso.tarantulaForum.repositories.MessageRepository;
-import hu.remzso.tarantulaForum.repositories.TarantulaRepository;
 import hu.remzso.tarantulaForum.repositories.UserRepository;
 import hu.remzso.tarantulaForum.services.UserServiceImpl;
 
@@ -49,20 +46,21 @@ public class TarantulaController {
 	private static final String JPGExtension = ".jpg";
 	private User userForRegistration;
 
-	@Autowired
-	private UserServiceImpl userServiceImpl;
-	@Autowired
-	private TarantulaRepository tarantulaRepository;
-	@Autowired
-	private FileEntityRepository fileEntityRepository;
-	@Autowired
-	private UserRepository userRepository;
-	@Autowired
-	private MessageRepository messageRepository;
-	@Autowired
-	private TarantulaService tarantulaService;
-	@Autowired
-	private FileEntityService fileEntityService;
+	private final UserServiceImpl userServiceImpl;
+	private final FileEntityRepository fileEntityRepository;
+	private final UserRepository userRepository;
+	private final MessageRepository messageRepository;
+	private final TarantulaService tarantulaService;
+	private final FileEntityService fileEntityService;
+
+	public TarantulaController(UserServiceImpl userServiceImpl, FileEntityRepository fileEntityRepository, UserRepository userRepository, MessageRepository messageRepository, TarantulaService tarantulaService, FileEntityService fileEntityService) {
+		this.userServiceImpl = userServiceImpl;
+		this.fileEntityRepository = fileEntityRepository;
+		this.userRepository = userRepository;
+		this.messageRepository = messageRepository;
+		this.tarantulaService = tarantulaService;
+		this.fileEntityService = fileEntityService;
+	}
 
 	@RequestMapping("/login")
 	public String login() {
@@ -136,7 +134,7 @@ public class TarantulaController {
 	}
 
 	@RequestMapping("/uploadTarantula")
-	public String renderTarantulaUlpoad(Model model) {
+	public String renderTarantulaUpload(Model model) {
 
 		return "tarantulaUpload";
 	}
@@ -166,7 +164,7 @@ public class TarantulaController {
 		//Kell egy logika ami ellenőrzi, hogy email cím avgy felhasználónév alapján küldünk üzenetet.
 		
 		// ha ez a metódus kivételt dob akkor arra reagálni kell kliens oldalon.
-		Set<User> recipientUsers = createUseresFromUsernames(recipients);
+		Set<User> recipientUsers = createUsersFromUsernames(recipients);
 		Message message = new Message(null, tittle,sender, recipientUsers, messageToSend, LocalDateTime.now(), false);
 		messageRepository.save(message);
 		return "actualUser";
@@ -174,7 +172,7 @@ public class TarantulaController {
 
 	@RequestMapping("/upload")
 	public ResponseEntity<String> uploadTarantula(@RequestPart("images") List<MultipartFile> images,
-			@ModelAttribute Tarantula tarantula) throws IOException {
+			@ModelAttribute Tarantula tarantula) {
 
 		if (tarantulaService.isTarantulaExistByGenusAndSpecies(tarantula.getGenus(),tarantula.getSpieces())) {
 			return ResponseEntity.badRequest().body("This spider already exist!");
@@ -212,7 +210,7 @@ public class TarantulaController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not logged in");
 		}
 
-		if (images == null || images.size() == 0) {
+		if (images == null || images.isEmpty()) {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No images selected");
 		}
@@ -256,7 +254,7 @@ public class TarantulaController {
 		return file;
 	}
 
-	private Set<User> createUseresFromUsernames(String recipients) {
+	private Set<User> createUsersFromUsernames(String recipients) {
 		Set<User> result = new HashSet<>();
 		for (String username : recipients.split(",")) {
 			User user = userRepository.findByUsername(username.trim());
@@ -269,7 +267,7 @@ public class TarantulaController {
 		return result;
 	}
 
-	private Set<User> createUseresFromEmails(String recipients) {
+	private Set<User> createUsersFromEmails(String recipients) {
 		Set<User> result = new HashSet<>();
 		for (String email : recipients.split(",")) {
 			User user = userRepository.findByEmail(email.trim());
